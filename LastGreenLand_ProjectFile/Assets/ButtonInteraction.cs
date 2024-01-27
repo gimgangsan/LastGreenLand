@@ -10,7 +10,6 @@ public class ButtonInteraction : MonoBehaviour
     private Color idleColor;
     [SerializeField] private Color highlightColor;
     [SerializeField] private Color holdColor;
-    [SerializeField] private Color clickColor;
     private SpriteRenderer sprite;
     public UnityEvent OnClick;
 
