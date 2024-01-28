@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class ButtonInteraction : MonoBehaviour
 {
-    private Color idleColor;
-    [SerializeField] private Color highlightColor;
-    [SerializeField] private Color holdColor;
-    private SpriteRenderer sprite;
+    protected Color idleColor;
+    [SerializeField] protected Color highlightColor;
+    [SerializeField] protected Color holdColor;
+    protected SpriteRenderer sprite;
     public UnityEvent OnClick;
 
-    bool mouseOnButton;
+    protected bool mouseOnButton;
 
     private void Awake()
     {
@@ -40,8 +40,8 @@ public class ButtonInteraction : MonoBehaviour
 
     private void OnMouseUp()
     {
-        sprite.color = (mouseOnButton)? highlightColor : idleColor;
         if (mouseOnButton) ExecuteWhenClicked();
+        sprite.color = (mouseOnButton)? highlightColor : idleColor;
     }
 
     public virtual void ExecuteWhenClicked()
