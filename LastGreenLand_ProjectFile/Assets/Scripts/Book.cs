@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,20 +6,14 @@ using UnityEngine;
 public class Book : MonoBehaviour
 {
     private SpriteRenderer sprite;
-
     [SerializeField] private Canvas coverText;
 
-    [SerializeField] private GameObject statusPage;
-    [SerializeField] private GameObject itemPage;
-    [SerializeField] private GameObject craftPage;
-    [SerializeField] private GameObject logPage;
+    [SerializeField] private page status;
+    [SerializeField] private page item;
+    [SerializeField] private page craft;
+    [SerializeField] private page log;
 
-    [SerializeField] private ToggleInteration statusBookmark;
-    [SerializeField] private ToggleInteration itemBookmark;
-    [SerializeField] private ToggleInteration craftBookmark;
-    [SerializeField] private ToggleInteration logBookmark;
-
-    private GameObject currentPage = null;
+    private page currentPage = null;
 
     private void Awake()
     {
@@ -39,93 +34,79 @@ public class Book : MonoBehaviour
 
     public void ShowStatus()
     {
-        if(ReferenceEquals(currentPage, statusPage))
+        if(ReferenceEquals(currentPage, status))
         {
-            statusPage.SetActive(false);
+            currentPage.Page.SetActive(false);
             currentPage = null;
             CloseCover();
         }
         else
         {
             OpenCover();
-            (currentPage)?.SetActive(false);
-            InitializeSelectedBookmarkColor();
-            statusPage.SetActive(true);
-            currentPage = statusPage;
+            (currentPage)?.Page.SetActive(false);
+            (currentPage)?.Toggle.ToggleOff();
+            currentPage = status;
+            currentPage.Page.SetActive(true);
         }
     }
 
     public void ShowItem()
     {
-        if (ReferenceEquals(currentPage, itemPage))
+        if (ReferenceEquals(currentPage, item))
         {
-            itemPage.SetActive(false);
+            currentPage.Page.SetActive(false);
             currentPage = null;
             CloseCover();
         }
         else
         {
             OpenCover();
-            (currentPage)?.SetActive(false);
-            InitializeSelectedBookmarkColor();
-            itemPage.SetActive(true);
-            currentPage = itemPage;
+            (currentPage)?.Page.SetActive(false);
+            (currentPage)?.Toggle.ToggleOff();
+            currentPage = item;
+            currentPage.Page.SetActive(true);
         }
     }
 
     public void ShowCraft()
     {
-        if (ReferenceEquals(currentPage, craftPage))
+        if (ReferenceEquals(currentPage, craft))
         {
-            craftPage.SetActive(false);
+            currentPage.Page.SetActive(false);
             currentPage = null;
             CloseCover();
         }
         else
         {
             OpenCover();
-            (currentPage)?.SetActive(false);
-            InitializeSelectedBookmarkColor();
-            craftPage.SetActive(true);
-            currentPage = craftPage;
+            (currentPage)?.Page.SetActive(false);
+            (currentPage)?.Toggle.ToggleOff();
+            currentPage = craft;
+            currentPage.Page.SetActive(true);
         }
     }
 
     public void ShowLog()
     {
-        if (ReferenceEquals(currentPage, logPage))
+        if (ReferenceEquals(currentPage, log))
         {
-            logPage.SetActive(false);
+            currentPage.Page.SetActive(false);
             currentPage = null;
             CloseCover();
         }
         else
         {
             OpenCover();
-            (currentPage)?.SetActive(false);
-            InitializeSelectedBookmarkColor();
-            logPage.SetActive(true);
-            currentPage = logPage;
+            (currentPage)?.Page.SetActive(false);
+            (currentPage)?.Toggle.ToggleOff();
+            currentPage = log;
+            currentPage.Page.SetActive(true);
         }
     }
+}
 
-    public void InitializeSelectedBookmarkColor()
-    {
-        if(ReferenceEquals(currentPage, statusPage))
-        {
-            statusBookmark.ToggleOff();
-        }
-        else if(ReferenceEquals(currentPage, itemPage))
-        {
-            itemBookmark.ToggleOff();
-        }
-        else if(ReferenceEquals(currentPage, craftPage))
-        {
-            craftBookmark.ToggleOff();
-        }
-        else if(ReferenceEquals(currentPage, logPage))
-        {
-            logBookmark.ToggleOff();
-        }
-    }
+[System.Serializable] public class page
+{
+    public GameObject Page;
+    public ToggleInteration Toggle;
 }
