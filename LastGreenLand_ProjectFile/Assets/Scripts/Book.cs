@@ -20,6 +20,44 @@ public class Book : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
+    public void ShowStatus()
+    {
+        ShowPage(status);
+    }
+
+    public void ShowItem()
+    {
+        ShowPage(item);
+    }
+
+    public void ShowCraft()
+    {
+        ShowPage(craft);
+    }
+
+    public void ShowLog()
+    {
+        ShowPage(log);
+    }
+
+    public void ShowPage(page page)
+    {
+        if (ReferenceEquals(currentPage, page))
+        {
+            currentPage.Page.SetActive(false);
+            currentPage = null;
+            CloseCover();
+        }
+        else
+        {
+            OpenCover();
+            (currentPage)?.Page.SetActive(false);
+            (currentPage)?.Toggle.ToggleOff();
+            currentPage = page;
+            currentPage.Page.SetActive(true);
+        }
+    }
+
     public void CloseCover()
     {
         sprite.enabled = true;
@@ -30,78 +68,6 @@ public class Book : MonoBehaviour
     {
         sprite.enabled = false;
         coverText.enabled = false;
-    }
-
-    public void ShowStatus()
-    {
-        if(ReferenceEquals(currentPage, status))
-        {
-            currentPage.Page.SetActive(false);
-            currentPage = null;
-            CloseCover();
-        }
-        else
-        {
-            OpenCover();
-            (currentPage)?.Page.SetActive(false);
-            (currentPage)?.Toggle.ToggleOff();
-            currentPage = status;
-            currentPage.Page.SetActive(true);
-        }
-    }
-
-    public void ShowItem()
-    {
-        if (ReferenceEquals(currentPage, item))
-        {
-            currentPage.Page.SetActive(false);
-            currentPage = null;
-            CloseCover();
-        }
-        else
-        {
-            OpenCover();
-            (currentPage)?.Page.SetActive(false);
-            (currentPage)?.Toggle.ToggleOff();
-            currentPage = item;
-            currentPage.Page.SetActive(true);
-        }
-    }
-
-    public void ShowCraft()
-    {
-        if (ReferenceEquals(currentPage, craft))
-        {
-            currentPage.Page.SetActive(false);
-            currentPage = null;
-            CloseCover();
-        }
-        else
-        {
-            OpenCover();
-            (currentPage)?.Page.SetActive(false);
-            (currentPage)?.Toggle.ToggleOff();
-            currentPage = craft;
-            currentPage.Page.SetActive(true);
-        }
-    }
-
-    public void ShowLog()
-    {
-        if (ReferenceEquals(currentPage, log))
-        {
-            currentPage.Page.SetActive(false);
-            currentPage = null;
-            CloseCover();
-        }
-        else
-        {
-            OpenCover();
-            (currentPage)?.Page.SetActive(false);
-            (currentPage)?.Toggle.ToggleOff();
-            currentPage = log;
-            currentPage.Page.SetActive(true);
-        }
     }
 }
 
