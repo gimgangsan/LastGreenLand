@@ -755,15 +755,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 247296015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc4b801b340b5534abf00ac6ffe4bc0f, type: 3}
+  m_Script: {fileID: 11500000, guid: a192ee7957fba964f8447cf9f4251b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   holdColor: {r: 0, g: 1, b: 0, a: 1}
-  clickColor: {r: 0, g: 0, b: 1, a: 1}
   OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 291904875}
+        m_TargetAssemblyTypeName: Book, Assembly-CSharp
+        m_MethodName: ShowStatus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  toggleColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &291904872
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,7 +854,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291904872}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.89, y: -0.15, z: -0.010731308}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6.7844825, y: 9.389593, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -867,14 +879,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coverText: {fileID: 88064657}
-  StatusPage: {fileID: 407922921}
-  ItemPage: {fileID: 1287076578}
-  CraftPage: {fileID: 2041440963}
-  LogPage: {fileID: 1765371802}
-  StatusBookmark: {fileID: 247296021}
-  ItemBookmark: {fileID: 1850789136}
-  CraftBookmark: {fileID: 1519590243}
-  LogBookmark: {fileID: 1337657916}
+  status:
+    Page: {fileID: 407922921}
+    Toggle: {fileID: 247296021}
+  item:
+    Page: {fileID: 1287076578}
+    Toggle: {fileID: 1850789138}
+  craft:
+    Page: {fileID: 2041440963}
+    Toggle: {fileID: 1519590245}
+  log:
+    Page: {fileID: 1765371802}
+    Toggle: {fileID: 1337657918}
 --- !u!1 &362689796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,7 +1053,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407922921}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -0.1693, z: -0.010731308}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6.7844825, y: 9.389593, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1222,7 +1238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698435462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.92, y: 0.2, z: 0.010731308}
+  m_LocalPosition: {x: -22.36, y: 0.2, z: 0.010731308}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1395,7 +1411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923200989}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.91, y: 0, z: 0}
+  m_LocalPosition: {x: -12.45, y: 0, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1594,7 +1610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287076578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -0.1693, z: -0.010731308}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6.7844825, y: 9.389593, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1664,8 +1680,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1337657914}
   - component: {fileID: 1337657915}
-  - component: {fileID: 1337657916}
   - component: {fileID: 1337657917}
+  - component: {fileID: 1337657918}
   m_Layer: 0
   m_Name: LogBookmark
   m_TagString: Untagged
@@ -1740,36 +1756,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1337657916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337657913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc4b801b340b5534abf00ac6ffe4bc0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
-  holdColor: {r: 0, g: 1, b: 0, a: 1}
-  clickColor: {r: 0, g: 0, b: 1, a: 1}
-  OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Book, Assembly-CSharp
-        m_MethodName: ShowLogPage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!61 &1337657917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1796,6 +1782,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1337657918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337657913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a192ee7957fba964f8447cf9f4251b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  holdColor: {r: 0, g: 1, b: 0, a: 1}
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 291904875}
+        m_TargetAssemblyTypeName: Book, Assembly-CSharp
+        m_MethodName: ShowLog
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  toggleColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &1365731804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,8 +1927,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1519590241}
   - component: {fileID: 1519590242}
-  - component: {fileID: 1519590243}
   - component: {fileID: 1519590244}
+  - component: {fileID: 1519590245}
   m_Layer: 0
   m_Name: CraftBookmark
   m_TagString: Untagged
@@ -1987,36 +2003,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1519590243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1519590240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc4b801b340b5534abf00ac6ffe4bc0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
-  holdColor: {r: 0, g: 1, b: 0, a: 1}
-  clickColor: {r: 0, g: 0, b: 1, a: 1}
-  OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Book, Assembly-CSharp
-        m_MethodName: ShowCraftPage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!61 &1519590244
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2043,6 +2029,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1519590245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519590240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a192ee7957fba964f8447cf9f4251b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  holdColor: {r: 0, g: 1, b: 0, a: 1}
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 291904875}
+        m_TargetAssemblyTypeName: Book, Assembly-CSharp
+        m_MethodName: ShowCraft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  toggleColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &1582803970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,7 +2294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765371802}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -0.1693, z: -0.010731308}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6.7844825, y: 9.389593, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2348,8 +2364,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1850789134}
   - component: {fileID: 1850789135}
-  - component: {fileID: 1850789136}
   - component: {fileID: 1850789137}
+  - component: {fileID: 1850789138}
   m_Layer: 0
   m_Name: ItemBookmark
   m_TagString: Untagged
@@ -2424,36 +2440,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1850789136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850789133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc4b801b340b5534abf00ac6ffe4bc0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
-  holdColor: {r: 0, g: 1, b: 0, a: 1}
-  clickColor: {r: 0, g: 0, b: 1, a: 1}
-  OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Book, Assembly-CSharp
-        m_MethodName: ShowItemPage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!61 &1850789137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2480,6 +2466,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1850789138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850789133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a192ee7957fba964f8447cf9f4251b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  holdColor: {r: 0, g: 1, b: 0, a: 1}
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 291904875}
+        m_TargetAssemblyTypeName: Book, Assembly-CSharp
+        m_MethodName: ShowItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  toggleColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &2041440963
 GameObject:
   m_ObjectHideFlags: 0
@@ -2505,7 +2521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041440963}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -0.1693, z: -0.010731308}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6.7844825, y: 9.389593, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
