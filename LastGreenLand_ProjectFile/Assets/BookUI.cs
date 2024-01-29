@@ -16,6 +16,30 @@ public class BookUI : MonoBehaviour
 
     private PageUI currentPage = null;
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            ShowStatus();
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            ShowItem();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ShowCraft();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ShowLog();
+        }
+        if(Input.GetKeyDown (KeyCode.Tab)) 
+        {
+            ShowMap();
+        }
+    }
+
     public void ShowStatus()
     {
         ShowPage(status);
