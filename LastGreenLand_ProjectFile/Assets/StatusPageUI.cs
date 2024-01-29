@@ -11,7 +11,9 @@ public class StatusPageUI : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.C))
         {
-            Instantiate(ContentFill_test).transform.SetParent(ContentArea.transform);
+            GameObject newContent = Instantiate(ContentFill_test);
+            newContent.transform.SetParent(ContentArea.transform);
+            newContent.transform.localScale = Vector3.one;
         }
     }
 }
