@@ -11,6 +11,7 @@ public class Book : MonoBehaviour
     [SerializeField] private page status;
     [SerializeField] private page item;
     [SerializeField] private page craft;
+    [SerializeField] private page map;
     [SerializeField] private page log;
 
     private page currentPage = null;
@@ -33,6 +34,11 @@ public class Book : MonoBehaviour
     public void ShowCraft()
     {
         ShowPage(craft);
+    }
+
+    public void ShowMap()
+    {
+        ShowPage(map);
     }
 
     public void ShowLog()

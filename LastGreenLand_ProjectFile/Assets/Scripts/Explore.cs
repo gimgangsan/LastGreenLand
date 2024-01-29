@@ -10,6 +10,9 @@ public class Explore : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Space))
+        {
             EffectAnimator.SetTrigger("Walk");
+            LogManager.Instance.AddLog("Walked at " + Time.time);
+        }
     }
 }
