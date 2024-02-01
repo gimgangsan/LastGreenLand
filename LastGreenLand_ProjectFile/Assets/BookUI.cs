@@ -6,91 +6,59 @@ using UnityEngine.UI;
 
 public class BookUI : MonoBehaviour
 {
-    [SerializeField] private GameObject TopCover;
+    [SerializeField] private PageUI[] PageArray;
+    [SerializeField] private int currentPageNum;
 
-    [SerializeField] private PageUI status;
-    [SerializeField] private PageUI item;
-    [SerializeField] private PageUI craft;
-    [SerializeField] private PageUI log;
-    [SerializeField] private PageUI map;
-
-    private PageUI currentPage = null;
+    void Awake()
+    {
+        foreach (PageUI _page in PageArray)
+            _page.animator = _page.Page.GetComponent<Animator>();
+    }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            ShowStatus();
+            ShowPage(1);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            ShowItem();
+            ShowPage(2);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ShowCraft();
+            ShowPage(3);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ShowLog();
+            ShowPage(4);
         }
         if(Input.GetKeyDown (KeyCode.Tab)) 
         {
-            ShowMap();
+            ShowPage(5);
         }
     }
-
-    public void ShowStatus()
+    
+    public void ShowPage(int targetPageNum)
     {
-        ShowPage(status);
+        StartCoroutine(_ShowPage(targetPageNum));
     }
 
-    public void ShowItem()
+    public IEnumerator _ShowPage(int targetPageNum)
     {
-        ShowPage(item);
-    }
+        if (currentPageNum == targetPageNum) targetPageNum = 0;
 
-    public void ShowCraft()
-    {
-        ShowPage(craft);
-    }
-
-    public void ShowLog()
-    {
-        ShowPage(log);
-    }
-
-    public void ShowMap()
-    {
-        ShowPage(map);
-    }
-
-    public void ShowPage(PageUI page)
-    {
-        if (ReferenceEquals(currentPage, page))
-        {
-            currentPage.Page.SetActive(false);
-            currentPage = null;
-            CloseCover();
+        for (; currentPageNum < targetPageNum; currentPageNum++) {
+            PageArray[currentPageNum].animator.SetTrigger("Open");
+            yield return new WaitForSeconds(0.2f);
         }
-        else
-        {
-            OpenCover();
-            (currentPage)?.Page.SetActive(false);
-            //(currentPage)?.Toggle.ToggleOff();
-            currentPage = page;
-            currentPage.Page.SetActive(true);
+
+        for (; currentPageNum > targetPageNum; currentPageNum--) {
+            PageArray[currentPageNum-1].animator.SetTrigger("Close");
+            yield return new WaitForSeconds(0.2f);
         }
-    }
 
-    public void CloseCover()
-    {
-        TopCover.SetActive(true);
-    }
-
-    public void OpenCover()
-    {
-        TopCover.SetActive(false);
+        currentPageNum = Mathf.Clamp(currentPageNum, 0, PageArray.Length - 1);
     }
 }
 
@@ -98,5 +66,6 @@ public class BookUI : MonoBehaviour
 public class PageUI
 {
     public GameObject Page;
+    [HideInInspector] public Animator animator;
     //public ToggleInteration Toggle;
 }
