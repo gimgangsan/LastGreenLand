@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatusPageUI : MonoBehaviour
+public class PageTest : MonoBehaviour
 {
     public GameObject ContentFill_test;
     public GameObject ContentArea;
