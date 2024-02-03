@@ -11,11 +11,23 @@ public class EncounterManager : MonoBehaviour
     public Episode testEpisode = new Episode(); //테스트용 에피소드
     public Encounter goingEncounter;    //현재 진행 중인 인카운터
 
+    #region Treasure_Encounter를 위한 변수들
+    public GameObject treasureLightPrefab;
+    public GameObject Background;
+    #endregion
+
+    #region Selection_Encounter를 위한 변수들
     public GameObject[] panelObjs;  //현재 유니티scene에 5개 존재
-    TMP_Text[] panelTexts;
+    [HideInInspector] public TMP_Text[] panelTexts;
+    #endregion
+
+    //싱글턴 패턴
+    public static EncounterManager Instance { get; private set; }
 
     void Awake()
     {
+        Instance = this;    //싱글턴 패턴
+
         //panelObject에 대응하는 TMP_Text 할당
         panelTexts = new TMP_Text[panelObjs.Length];
         for (int i = 0; i < panelObjs.Length; i++)
@@ -30,35 +42,5 @@ public class EncounterManager : MonoBehaviour
                                         new("돌파한다", -10),
                                         new("돌을 던진다", 1) }
                                     );
-    }
-
-    public void Encount(Episode episode)    //인카운터 시작, Explore.cs에서 호출
-    {
-        goingEncounter = episode.GetRandomEncounter;      //랜덤하게 하나 뽑기
-
-        Debug.Log(goingEncounter.context);     //context가 책에 쓰이도록 구현 필요
-
-        for (int i = 0; i < panelTexts.Length; i++)
-        {
-            if (i < goingEncounter.options.Length) //선택지 개수만큼
-            {
-                panelObjs[i].SetActive(true);                           //선택지 활성화
-                panelTexts[i].text = goingEncounter.options[i].script;  //텍스트 갱신
-            }
-            else
-            {
-                panelObjs[i].SetActive(false);  //선택지 개수보다 많은 건 비활성화
-            }
-        }
-    }
-
-    //panelObjs의 버튼컴포넌트를 통해 호출
-    public void Complete(int optionIndex)
-    {
-        foreach(GameObject panel in panelObjs)
-            panel.SetActive(false);
-
-        goingEncounter.GetReward(optionIndex);
-        goingEncounter = null;
     }
 }
