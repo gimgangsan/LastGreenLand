@@ -10,29 +10,9 @@ public class StatusPage : MonoBehaviour
     [SerializeField] private PageContent[] contents;
     public enum ContentsIndex { hp, maxhp, strength, agility, hydration, hunger, bodyTemperature, // physical
                                 coldResistance, heatResistance, stealth, // environmental
-                                scavengingSkill, sociability, DIY, mechanicalKnowledge, weaponProdiciency } // skills
+                                scavenging, sociability, DIY, engineering, weaponMastery } // skills
 
     public int ContentsCount { get; private set; }
-
-    //// physical
-    //private int hp;
-    //private int maxhp;
-    //private int strength;
-    //private int agility;
-    //private int naturalHeal;
-
-    //// environmental
-    //private int coldResistance;
-    //private int heatResistance;
-    //private int stealth;
-
-    //// skills
-    //private int scavengingSkill;
-    //private int sociability;
-    //private int stressResilience;
-    //private int DIY;
-    //private int mechanicalKnowledge;
-    //private int weaponProficiency;
 
     private void Awake()
     {
@@ -62,7 +42,14 @@ public class PageContent
     public int Info;
     public string Type;
     public TextMeshProUGUI UI;
-    
+
+    public PageContent(int info, string type, TextMeshProUGUI uI)
+    {
+        Info = info;
+        Type = type;
+        UI = uI;
+    }
+
     public void UpdateInfo(int newStat)
     {
         UI.text = Type + " " + Info;
