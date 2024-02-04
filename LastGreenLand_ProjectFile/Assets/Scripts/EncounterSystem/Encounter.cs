@@ -17,6 +17,13 @@ public class Encounter
     protected Encounter afterEncounter;
     protected object reward;
 
+    protected Encounter(string name, bool precondition, string beforeContext)
+    {
+        this.name = name;
+        this.precondition = precondition;
+        this.beforeContext = beforeContext;
+    }
+
     public virtual void Encount()
     {
         if (precondition) return;

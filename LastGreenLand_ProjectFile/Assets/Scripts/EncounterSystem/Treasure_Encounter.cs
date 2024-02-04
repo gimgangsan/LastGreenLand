@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class Treasure_Encounter : Encounter
 {
-    public Treasure_Encounter(object reward)
+    public Treasure_Encounter(string name, bool precondition, string beforeContext, object reward)
+        : base(name, precondition, beforeContext)
     {
         base.reward = reward;
     }
 
-    public Treasure_Encounter(Encounter afterEncounter)
+    public Treasure_Encounter(string name, bool precondition, string beforeContext, Encounter afterEncounter)
+        : base(name, precondition, beforeContext)
     {
         base.afterEncounter = afterEncounter;
     }
 
-    public Treasure_Encounter(object reward, Encounter afterEncounter)
+    public Treasure_Encounter(string name, bool precondition, string beforeContext, object reward, Encounter afterEncounter)
+        : base(name, precondition, beforeContext)
     {
         base.reward = reward;
         base.afterEncounter = afterEncounter;

@@ -33,6 +33,7 @@ public class EncounterManager : MonoBehaviour
         for (int i = 0; i < panelObjs.Length; i++)
             panelTexts[i] = panelObjs[i].transform.Find("Text").GetComponent<TMP_Text>(); //자식오브젝트 중에서 이름으로 검색해서 할당
 
+/*
         //에피소드 안에 인카운터 생성
         testEpisode.CreateEncounter("지뢰(1)",                  //이름
                                     true,                       //선행조건
@@ -42,5 +43,6 @@ public class EncounterManager : MonoBehaviour
                                         new("돌파한다", -10),
                                         new("돌을 던진다", 1) }
                                     );
+*/
     }
 }

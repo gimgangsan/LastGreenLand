@@ -21,6 +21,12 @@ public class Selection_Encounter : Encounter
     }
     Option[] options;    //º±≈√¡ˆ
 
+    public Selection_Encounter(string name, bool precondition, string beforeContext, Option[] options)
+        :base(name, precondition, beforeContext)
+    {
+        this.options = options;
+    }
+
     public override void Encount()
     {
         base.Encount();

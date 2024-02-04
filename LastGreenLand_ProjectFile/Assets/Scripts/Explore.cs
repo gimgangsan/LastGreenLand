@@ -15,7 +15,6 @@ public class Explore : MonoBehaviour
         if (encounterManager.goingEncounter == null&& Input.GetKeyUp(KeyCode.Space))    //encounter 진행 중에는 탐색 불가
         {
             EffectAnimator.SetTrigger("Walk");
-            encounterManager.Encount(encounterManager.testEpisode);
         }
     }
 
