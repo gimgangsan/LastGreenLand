@@ -8,9 +8,10 @@ public class LogManager : MonoBehaviour
 {
     public static LogManager Instance = null;
 
-    [SerializeField] private TMP_Text logText;
+    [SerializeField] private GameObject logTextContainer;
+    [SerializeField] private GameObject logTextPrefab;
     [SerializeField] private int maxLogs = 13;
-    List<string> logs;
+    List<GameObject> logs;
 
     void Awake()
     {
@@ -27,45 +28,41 @@ public class LogManager : MonoBehaviour
 
     void Start()
     {
-        logs = new List<string>();
+        logs = new List<GameObject>();
     }
 
     public void AddLog(string text)
     {
-        logs.Insert(0, text);
+        GameObject newLog = Instantiate(logTextPrefab, logTextContainer.transform);
+        newLog.transform.SetParent(logTextContainer.transform);
+
+        TMP_Text textComp = newLog.GetComponentInChildren<TMP_Text>();
+        textComp.text = "- " + text;
+
+        logs.Insert(0, newLog);
 
         while (logs.Count > maxLogs)
         {
+            GameObject temp = logs[logs.Count - 1];
             logs.RemoveAt(logs.Count - 1);
+            Destroy(temp);
         }
-
-        UpdateLogText();
     }
 
     public void RemoveLog(int index)
     {
+        GameObject temp = logs[index];
         logs.RemoveAt(index);
-
-        UpdateLogText();
+        Destroy(logs[index]);
     } 
 
     public void FlushLog()
     {
         logs.Clear();
-        logText.SetText("");
 
-        UpdateLogText();
-    }
-
-    private void UpdateLogText()
-    {
-        StringBuilder sb = new StringBuilder();
-
-        foreach(var str in logs)
+        foreach(GameObject child in logTextContainer.transform)
         {
-            sb.Append("- " + str + "\n");
+            Destroy(child);
         }
-
-        logText.SetText(sb.ToString());
     }
 }
