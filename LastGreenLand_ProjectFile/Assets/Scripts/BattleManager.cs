@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
+    public static BattleManager Instance = null;
+
     public Enemy[] enemies;
 
     [SerializeField] private GameObject battleScreen;
@@ -25,6 +27,19 @@ public class BattleManager : MonoBehaviour
     private bool isPlayerDefending = false;
 
     private float actionCooldown = 1f;
+
+    void Start()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Update()
     {
