@@ -45,14 +45,19 @@ public class Selection_Encounter : Encounter
         }
     }
 
-    public void Select(int OptionIndex)
+    public void Select(int optionIndex)
     {
-        Option selectedOption = options[OptionIndex];
-
-        base.succeeingContext = selectedOption.afterContext;
+        Option selectedOption = options[optionIndex];
+       
+        base.afterContext= selectedOption.afterContext;
         base.afterEncounter = selectedOption.afterEncounter;
         base.reward = selectedOption.reward;
 
+        foreach (GameObject panel in EncounterManager.Instance.panelObjs)
+            panel.SetActive(false);
+
+        Debug.Log(afterContext);
+        LogManager.Instance.AddLog(afterContext);
         base.Complete();
     }
 }

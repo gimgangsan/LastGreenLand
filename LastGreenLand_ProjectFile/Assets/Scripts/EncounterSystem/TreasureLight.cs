@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class TreasureLight : MonoBehaviour
 {
     public GameObject star;
     public GameObject burst;
-    public Treasure_Encounter parentEncounter;
+    public Action CompleteEncounter;
 
     void OnEnable()
     {
@@ -18,7 +19,8 @@ public class TreasureLight : MonoBehaviour
     {
         star.SetActive(false);
         burst.SetActive(true);
-        parentEncounter.Complete();
+        if (CompleteEncounter == null) Debug.Log("TreasureLight의 CompleteEncounter델리게이트가 null");
+        CompleteEncounter?.Invoke();
         StartCoroutine(SetDisable());
     }
 

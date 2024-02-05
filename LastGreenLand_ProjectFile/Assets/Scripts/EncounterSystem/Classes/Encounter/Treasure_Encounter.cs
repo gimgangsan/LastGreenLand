@@ -34,6 +34,8 @@ public class Treasure_Encounter : Encounter
                                                     Random.Range(-0.8f, 0.8f),
                                                     0);
 
-        light.GetComponent<TreasureLight>().parentEncounter = this;
+        light.GetComponent<TreasureLight>().CompleteEncounter = new System.Action(Complete);
+
+        base.Encount();
     }
 }
