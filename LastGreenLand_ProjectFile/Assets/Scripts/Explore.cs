@@ -8,13 +8,13 @@ using UnityEngine.UIElements;
 public class Explore : MonoBehaviour
 {
     public Animator EffectAnimator;
-    public EncounterManager encounterManager;
 
     void Update()
     {
-        if (encounterManager.goingEncounter == null&& Input.GetKeyUp(KeyCode.Space))    //encounter 진행 중에는 탐색 불가
+        if (EncounterManager.Instance.ongoingEncounter == null && Input.GetKeyUp(KeyCode.Space))    //encounter 진행 중에는 탐색 불가
         {
             EffectAnimator.SetTrigger("Walk");
+            EncounterDB.테스트시나리오.GetRandomEncounter.Encount();
         }
     }
 
