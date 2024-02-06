@@ -13,7 +13,7 @@ public static class EncounterDB
         reward: 5
         );
 
-    public static Battle_Encounter 시체와의_싸움 = new Battle_Encounter(
+    public static Battle_Encounter 시체와의_싸움 = new 시체와의_싸움(
         name: "시체와의 싸움",
         precondition: true,
         beforeContext: "시체와 싸워 승리했습니다.",
