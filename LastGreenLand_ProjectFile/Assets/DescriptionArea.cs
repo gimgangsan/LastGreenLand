@@ -17,9 +17,8 @@ public class DescriptionArea : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("mouse enter");
         display.SetActive(true);
-        display.GetComponent<RectTransform>().position = eventData.pointerPressRaycast.worldPosition;
+        display.GetComponent<RectTransform>().position = new Vector3(0,0,0);
     }
 
     public void OnPointerExit(PointerEventData eventData)
