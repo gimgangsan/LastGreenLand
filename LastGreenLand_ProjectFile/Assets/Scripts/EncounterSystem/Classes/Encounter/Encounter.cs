@@ -45,13 +45,13 @@ public class Encounter
 
     void GetReward(object reward)   //reward 처리
     {
-        if (reward is int) {         //자료형이 int라면 (스탯을 위한 자료형이 필요)
+        /*if (reward is int) {        //자료형이 int라면 (스탯을 위한 자료형이 필요)
             Debug.Log($"스탯이 {reward}만큼 올랐습니다.");
             LogManager.Instance.AddLog($"스탯이 {reward}만큼 올랐습니다.");
         }
         else if(reward is string) { //자료형이 string이라면 (아이템을 위한 자료형이 필요)
             Debug.Log($"아이템 \"{reward}\"을(를) 얻었습니다.");
             LogManager.Instance.AddLog($"아이템 \"{reward}\"을(를) 얻었습니다.");
-        }
+        }*/
     }
 }
