@@ -9,15 +9,15 @@ public static class EncounterDB
     public static Battle_Encounter 살인마와의_싸움 = new Battle_Encounter(
         name: "살인마와의 싸움",
         precondition: true,
-        beforeContext: "싸우는 기능이 구현되지 않아서 살해당하고 말았습니다.",
-        reward: -100
+        beforeContext: "살인마와 싸워 승리했습니다.",
+        reward: 5
         );
 
     public static Battle_Encounter 시체와의_싸움 = new Battle_Encounter(
         name: "시체와의 싸움",
         precondition: true,
-        beforeContext: "싸우는 기능이 구현되지 않아서 먹히고 말았습니다.",
-        reward: -100
+        beforeContext: "시체와 싸워 승리했습니다.",
+        reward: 1
         );
 
     public static Selection_Encounter 달려오는_사람 = new Selection_Encounter(

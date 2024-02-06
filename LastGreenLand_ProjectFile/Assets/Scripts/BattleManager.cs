@@ -125,6 +125,7 @@ public class BattleManager : MonoBehaviour
     public void EndBattle()
     {
         battleScreen.SetActive(false);
+        EncounterManager.Instance.ongoingEncounter.Complete();
     }
 }
 

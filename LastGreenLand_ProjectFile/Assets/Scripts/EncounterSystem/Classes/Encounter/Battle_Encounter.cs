@@ -8,4 +8,15 @@ public class Battle_Encounter : Encounter
     {
         base.reward = reward;
     }
+
+    public override void Encount()
+    {
+        BattleManager.Instance.StartBattle(0);
+        base.Encount();
+    }
+
+    public override void Complete()
+    {
+        base.Complete();
+    }
 }

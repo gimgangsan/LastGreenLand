@@ -7,8 +7,8 @@ public class Selection_Encounter : Encounter
     public struct Option    //선택지 구조체
     {
         public string optionScript;   //선택지에 들어갈 대사
-        public object reward;   //무슨 자료형이 들어갈지 모름, is 연산자로 처리할 예정, 스탯 및 아이템을 위한 자료형이 필요
         public string afterContext;
+        public object reward;   //무슨 자료형이 들어갈지 모름, is 연산자로 처리할 예정, 스탯 및 아이템을 위한 자료형이 필요
         public Encounter afterEncounter;
 
         public Option(string optionScript, string afterContext, object reward = null, Encounter afterEncounter = null)
