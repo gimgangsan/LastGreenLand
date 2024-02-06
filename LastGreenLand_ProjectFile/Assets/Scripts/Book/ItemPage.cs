@@ -19,6 +19,18 @@ public class ItemPage : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            CreateContent(1, "test");
+        }
+        if(Input.GetKeyDown(KeyCode.S)) 
+        {
+            DestroyContent(contents[0]);
+        }
+    }
+
     public PageContent GetContent(int index)
     {
         return contents[index];
@@ -49,7 +61,7 @@ public class ItemPage : MonoBehaviour
     {
         // contentsfill child must be one!!!
         GameObject newUI = Instantiate(contentsFill);
-        newUI.transform.parent = verticalLayout.transform;
+        newUI.transform.SetParent(verticalLayout.transform, false);
         contents.Add(new PageContent(info, type, newUI.GetComponentInChildren<TextMeshProUGUI>()));
     }
 
@@ -80,7 +92,7 @@ public class ItemPage : MonoBehaviour
 
     public void DestroyContent(PageContent content)
     {
-        Destroy(content.UI.rectTransform.parent);
         contents.Remove(content);
+        Destroy(content.UI.rectTransform.parent.gameObject);
     }
 }
