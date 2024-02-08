@@ -19,8 +19,7 @@ public class TreasureLight : MonoBehaviour
     {
         star.SetActive(false);
         burst.SetActive(true);
-        if (CompleteEncounter == null) Debug.Log("TreasureLight의 CompleteEncounter델리게이트가 null");
-        CompleteEncounter?.Invoke();
+        CompleteEncounter.Invoke();
         StartCoroutine(SetDisable());
     }
 

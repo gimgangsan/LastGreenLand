@@ -11,11 +11,25 @@ public class Explore : MonoBehaviour
 
     void Update()
     {
-        if (EncounterManager.Instance.ongoingEncounter == null && Input.GetKeyUp(KeyCode.Space))    //encounter 진행 중에는 탐색 불가
+        if (TreasureManager.Instance.ongoingEncounter == null &&
+            SelectionManager.Instance.ongoingEncounter == null &&
+            BattleManager.Instance.ongoingEncounter == null &&
+            Input.GetKeyUp(KeyCode.Space))    //encounter 진행 중에는 탐색 불가
         {
             EffectAnimator.SetTrigger("Walk");
-            EncounterDB.테스트시나리오.GetRandomEncounter.Encount();
+            Encount();
         }
     }
 
+    void Encount()
+    {
+        int rand = Random.Range(0, 2);
+        switch (rand)
+        {
+            case 0:
+                TreasureManager.Instance.테스트시나리오.GetRandomEncounter.Encount(); break;
+            case 1:
+                SelectionManager.Instance.테스트시나리오.GetRandomEncounter.Encount(); break;
+        }
+    }
 }

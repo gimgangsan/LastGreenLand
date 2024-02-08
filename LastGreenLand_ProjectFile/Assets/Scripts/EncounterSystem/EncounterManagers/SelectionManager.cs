@@ -6,23 +6,18 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 
-//EncounterSystem.cs먼저 읽고 올 것
-public class EncounterManager : MonoBehaviour
+public class SelectionManager : MonoBehaviour
 {
-    #region Treasure_Encounter를 위한 변수들
-    public GameObject treasureLightPrefab;
-    public GameObject Background;
-    #endregion
-
-    #region Selection_Encounter를 위한 변수들
     public GameObject[] panelObjs;  //현재 유니티scene에 5개 존재
     [HideInInspector] public TMP_Text[] panelTexts;
-    #endregion
 
-    public Encounter ongoingEncounter;
+    public Scenario 테스트시나리오 = new Scenario(
+        new 멀리서_사람의_그림자를_발견()
+    );
 
+    public Selection_Encounter ongoingEncounter;
     //싱글턴 패턴
-    public static EncounterManager Instance { get; private set; }
+    public static SelectionManager Instance { get; private set; }
 
     void Awake()
     {
@@ -36,8 +31,6 @@ public class EncounterManager : MonoBehaviour
 
     public void SelectOption(int optionIndex)
     {
-        Selection_Encounter ongoingEncounter = this.ongoingEncounter as Selection_Encounter;
-        if (ongoingEncounter == null) Debug.Log("[오류] EncounterManager의 Select()에서 ongoingEnounter가 null");
-        ongoingEncounter?.Select(optionIndex);
+        ongoingEncounter.Select(optionIndex);
     }
 }

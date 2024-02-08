@@ -23,6 +23,8 @@ public class BattleManager : MonoBehaviour
 
     private Enemy enemy;
 
+    public Battle_Encounter ongoingEncounter;
+
     private bool isPlayerTurn = true;
     private bool isPlayerDefending = false;
 
@@ -125,7 +127,7 @@ public class BattleManager : MonoBehaviour
     public void EndBattle()
     {
         battleScreen.SetActive(false);
-        EncounterManager.Instance.ongoingEncounter.Complete();
+        ongoingEncounter.Complete();
     }
 }
 
