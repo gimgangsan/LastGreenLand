@@ -23,15 +23,34 @@ public class RewardItem : IGetReward
 
 public class RewardStat : IGetReward
 {
-    public int stat;
-    public RewardStat(int stat)
+    public (StatusPage.ContentsIndex index, int amount)[] increments;
+    public RewardStat(params (StatusPage.ContentsIndex index, int amount)[] increments)
     {
-        this.stat = stat;
+        this.increments = increments;
     }
 
     public void GetReward()
     {
-        Debug.Log($"스탯이 {stat}만큼 상승했습니다.");
+        foreach (var increment in increments) { 
+            switch(increment.index)
+            {
+                case StatusPage.ContentsIndex.hp:
+                    GameManager.Instance.currentHealth += increment.amount;
+                    Debug.Log($"현재 체력이 {increment.amount}만큼 회복됩니다.");
+                    LogManager.Instance.AddLog($"현재 체력이 {increment.amount}만큼 회복됩니다.");
+                    break;
+                case StatusPage.ContentsIndex.maxhp:
+                    GameManager.Instance.maxHealth += increment.amount;
+                    Debug.Log($"최대 체력이 {increment.amount}만큼 증가합니다.");
+                    LogManager.Instance.AddLog($"최대 체력이 {increment.amount}만큼 증가합니다.");
+                    break;
+                case StatusPage.ContentsIndex.strength:
+                    GameManager.Instance.strength += increment.amount;
+                    Debug.Log($"힘이 {increment.amount}만큼 치솟습니다.");
+                    LogManager.Instance.AddLog($"힘이 {increment.amount}만큼 치솟습니다.");
+                    break;
+            }
+        }
     }
 }
 

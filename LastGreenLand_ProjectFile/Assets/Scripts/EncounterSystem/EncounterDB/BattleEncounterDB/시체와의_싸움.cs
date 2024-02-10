@@ -9,6 +9,6 @@ public class 시체와의_싸움 : Battle_Encounter
     public override void Complete()
     {
         base.Complete();
-        new RewardStat(1).GetReward();
+        new RewardStat((StatusPage.ContentsIndex.strength, 1)).GetReward();
     }
 }

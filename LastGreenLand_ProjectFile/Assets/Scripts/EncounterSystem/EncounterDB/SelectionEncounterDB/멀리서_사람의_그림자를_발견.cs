@@ -14,7 +14,7 @@ public class 멀리서_사람의_그림자를_발견 : Selection_Encounter
         options = new Option[]
         {
             new (optionScript: "달려온다",
-                 reward: new RewardStat(1),
+                 reward: new RewardStat((StatusPage.ContentsIndex.maxhp, 10)),
                  afterEncounter: new 달려오는_사람()),
             new (optionScript: "절뚝거린다",
                  afterContext: "그 사람이 절뚝거리며 걸어옵니다. 다리를 다친 듯 합니다.",

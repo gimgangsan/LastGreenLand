@@ -33,4 +33,9 @@ public class SelectionManager : MonoBehaviour
     {
         ongoingEncounter.Select(optionIndex);
     }
+
+    public void Encount()
+    {
+        테스트시나리오.GetRandomEncounter.Encount();
+    }
 }

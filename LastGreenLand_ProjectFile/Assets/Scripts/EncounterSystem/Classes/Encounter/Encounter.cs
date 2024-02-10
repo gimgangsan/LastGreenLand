@@ -11,13 +11,10 @@ public class Encounter
 {
     //전처리
     public bool precondition;   //선행 조건, 해당 인카운터를 진행할 자격이 있는가?
-    protected string beforeContext;      //인카운터에 대한 상황 설명, 또는 인카운터가 발생한 맥락
 
     public virtual void Encount()
     {
         if (!precondition) return;
-        Debug.Log(beforeContext);
-        LogManager.Instance.AddLog(beforeContext);
     }
 
     public virtual void Complete() { }

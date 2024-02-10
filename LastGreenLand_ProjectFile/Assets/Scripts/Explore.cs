@@ -9,12 +9,17 @@ public class Explore : MonoBehaviour
 {
     public Animator EffectAnimator;
 
+    void Start()
+    {
+        if (TreasureManager.Instance.ongoingEncounters == null) Debug.Log("1");
+    }
+
     void Update()
     {
-        if (TreasureManager.Instance.ongoingEncounter == null &&
+        if (Input.GetKeyUp(KeyCode.Space) &&    //encounter 진행 중에는 탐색 불가
+            TreasureManager.Instance.ongoingEncounters.Count == 0 &&
             SelectionManager.Instance.ongoingEncounter == null &&
-            BattleManager.Instance.ongoingEncounter == null &&
-            Input.GetKeyUp(KeyCode.Space))    //encounter 진행 중에는 탐색 불가
+            BattleManager.Instance.ongoingEncounter == null)
         {
             EffectAnimator.SetTrigger("Walk");
             Encount();
@@ -27,9 +32,9 @@ public class Explore : MonoBehaviour
         switch (rand)
         {
             case 0:
-                TreasureManager.Instance.테스트시나리오.GetRandomEncounter.Encount(); break;
+                TreasureManager.Instance.Encount(); break;
             case 1:
-                SelectionManager.Instance.테스트시나리오.GetRandomEncounter.Encount(); break;
+                SelectionManager.Instance.Encount(); break;
         }
     }
 }

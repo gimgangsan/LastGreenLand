@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Treasure_Encounter : Encounter
 {
-    public Treasure_Encounter()
-    {
-        beforeContext = "근처에 빛나는 물건이 보입니다.";
-    }
+    public Treasure_Encounter() { }
 
     public override void Encount()
     {
         base.Encount();
-        TreasureManager.Instance.ongoingEncounter = this;
+        TreasureManager.Instance.ongoingEncounters.Add(this);
 
         //프리팹 생성
         GameObject light = GameObject.Instantiate(TreasureManager.Instance.treasureLightPrefab);
@@ -29,6 +26,6 @@ public class Treasure_Encounter : Encounter
     public override void Complete()
     {
         base.Complete();
-        TreasureManager.Instance.ongoingEncounter = null;
+        TreasureManager.Instance.ongoingEncounters.Remove(this);
     }
 }

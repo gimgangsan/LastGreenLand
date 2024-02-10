@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Selection_Encounter : Encounter
 {
+    protected string beforeContext;      //인카운터에 대한 상황 설명, 또는 인카운터가 발생한 맥락
+
     public struct Option    //선택지 구조체
     {
         public string optionScript;   //선택지에 들어갈 대사
         public string afterContext;
-        public IGetReward reward;   //무슨 자료형이 들어갈지 모름, is 연산자로 처리할 예정, 스탯 및 아이템을 위한 자료형이 필요
+        public IGetReward reward;
         public Encounter afterEncounter;
 
         public Option(string optionScript, string afterContext = null, IGetReward reward = null, Encounter afterEncounter = null)
@@ -25,6 +27,9 @@ public class Selection_Encounter : Encounter
     {
         base.Encount();
         SelectionManager.Instance.ongoingEncounter = this;
+
+        Debug.Log(beforeContext);
+        LogManager.Instance.AddLog(beforeContext);
 
         for (int i = 0; i < SelectionManager.Instance.panelTexts.Length; i++)
         {

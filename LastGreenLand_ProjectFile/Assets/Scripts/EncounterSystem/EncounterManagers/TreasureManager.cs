@@ -12,7 +12,7 @@ public class TreasureManager : MonoBehaviour
     public GameObject treasureLightPrefab;
     public GameObject Background;
 
-    public Treasure_Encounter ongoingEncounter;
+    public List<Treasure_Encounter> ongoingEncounters = new();
 
     public Scenario 테스트시나리오 = new Scenario(
         new 낡은_단검_발견(),
@@ -25,5 +25,12 @@ public class TreasureManager : MonoBehaviour
     void Awake()
     {
         Instance = this;    //싱글턴 패턴
+    }
+
+    public void Encount()
+    {
+        int rand = Random.Range(1, 4);
+        for (int i = 0; i < rand; i++)
+            테스트시나리오.GetRandomEncounter.Encount();
     }
 }
