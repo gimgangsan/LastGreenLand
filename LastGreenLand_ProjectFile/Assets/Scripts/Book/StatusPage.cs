@@ -9,13 +9,15 @@ public class StatusPage : MonoBehaviour
 {
     [SerializeField] private PageContent[] contents;
     public enum ContentsIndex { hp, maxhp, strength, agility, hydration, hunger, bodyTemperature, // physical
-                                coldResistance, heatResistance, stealth, // environmental
-                                scavenging, sociability, DIY, engineering, weaponMastery } // skills
+        coldResistance, heatResistance, stealth, // environmental
+        scavenging, sociability, DIY, engineering, weaponMastery } // skills
 
     public int ContentsCount { get; private set; }
+    public static StatusPage Instance { get; private set; } //ΩÃ±€≈Ê ∆–≈œ
 
     private void Awake()
     {
+        Instance = this;    // ΩÃ±€≈Ê ∆–≈œ
         ContentsCount = Enum.GetNames(typeof(ContentsIndex)).Length;
         //Debug.Log(GetContent(ContentsIndex.hp).Info);
 

@@ -9,11 +9,6 @@ public class Explore : MonoBehaviour
 {
     public Animator EffectAnimator;
 
-    void Start()
-    {
-        if (TreasureManager.Instance.ongoingEncounters == null) Debug.Log("1");
-    }
-
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Space) &&    //encounter 진행 중에는 탐색 불가

@@ -23,34 +23,24 @@ public class RewardItem : IGetReward
 
 public class RewardStat : IGetReward
 {
-    public (StatusPage.ContentsIndex index, int amount)[] increments;
-    public RewardStat(params (StatusPage.ContentsIndex index, int amount)[] increments)
+    StatusPage.ContentsIndex index; // 변화시킬 스탯
+    int amount;                     // 변화량
+
+    public RewardStat(StatusPage.ContentsIndex index, int amount)
     {
-        this.increments = increments;
+        this.index = index;
+        this.amount = amount;
     }
 
     public void GetReward()
     {
-        foreach (var increment in increments) { 
-            switch(increment.index)
-            {
-                case StatusPage.ContentsIndex.hp:
-                    GameManager.Instance.currentHealth += increment.amount;
-                    Debug.Log($"현재 체력이 {increment.amount}만큼 회복됩니다.");
-                    LogManager.Instance.AddLog($"현재 체력이 {increment.amount}만큼 회복됩니다.");
-                    break;
-                case StatusPage.ContentsIndex.maxhp:
-                    GameManager.Instance.maxHealth += increment.amount;
-                    Debug.Log($"최대 체력이 {increment.amount}만큼 증가합니다.");
-                    LogManager.Instance.AddLog($"최대 체력이 {increment.amount}만큼 증가합니다.");
-                    break;
-                case StatusPage.ContentsIndex.strength:
-                    GameManager.Instance.strength += increment.amount;
-                    Debug.Log($"힘이 {increment.amount}만큼 치솟습니다.");
-                    LogManager.Instance.AddLog($"힘이 {increment.amount}만큼 치솟습니다.");
-                    break;
-            }
-        }
+        // 스탯 상승
+        StatusPage.Instance.GetContent(index).Info += amount;
+        StatusPage.Instance.GetContent(index).UpdateInfo(0);    //UpdateInfo에 왜 매개변수가 있는지 몰라서 아무거나 집어넣음
+
+        // 로그 출력
+        Debug.Log($"{index} : {amount}");
+        LogManager.Instance.AddLog($"{index} : {amount}");
     }
 }
 

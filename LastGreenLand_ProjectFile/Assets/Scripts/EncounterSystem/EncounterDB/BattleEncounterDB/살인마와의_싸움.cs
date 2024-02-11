@@ -14,6 +14,8 @@ public class 살인마와의_싸움 : Battle_Encounter
     {
         base.Complete();
         new RewardItem("피묻은 칼").GetReward();
+        new RewardStat(StatusPage.ContentsIndex.maxhp, 10).GetReward();
+        new RewardStat(StatusPage.ContentsIndex.strength, 2).GetReward();
     }
 }
 
