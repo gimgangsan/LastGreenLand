@@ -41,20 +41,20 @@ public class ItemPage : MonoBehaviour
         contents[index].UpdateInfo(newStat);
     }
 
-    public void AddItem(int info, string type)
+    public void AddItem(int quantity, string type)
     {
         for(int i = 0; i < contents.Count; i++)
         {
             // same string, same item, only plus count
             if (string.Compare(contents[i].Type, type) == 0)
             {
-                contents[i].Info += info;
+                contents[i].Info += quantity;
                 return;
             }
         }
 
         // no same item, add new content
-        CreateContent(info, type);
+        CreateContent(quantity, type);
     }
 
     public void CreateContent(int info, string type)

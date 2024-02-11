@@ -9,32 +9,26 @@ using UnityEngine.UI;
 public class DescriptionArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private GameObject display;
-    [SerializeField] private string description;
-    [SerializeField] GraphicRaycaster gr;
+    [SerializeField] [TextArea(2,8)] private string description;
 
     private void Awake()
     {
-        display.GetComponent<TextMeshProUGUI>().text = description;
-        display.SetActive(false);
+        ChangeDescription(description);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        display.SetActive(true);
-        
-        Ray ray = Camera.main.ScreenPointToRay(eventData.position);
-        Debug.DrawRay(ray.origin, ray.direction*100, Color.red, 1);
-
-        List<RaycastResult> hits = new();
-        //EventSystem.current.RaycastAll(eventData, hits);
-        gr.Raycast(eventData, hits);
-        
-        foreach (RaycastResult hit in hits)
-            display.transform.position = hit.worldPosition;
+        display.SetActive(true);;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         display.SetActive(false);
+    }
+
+    public void ChangeDescription(string description)
+    {
+        TextMeshProUGUI DescriptionText = display.GetComponentInChildren<TextMeshProUGUI>();
+        DescriptionText.text = description;
     }
 }
