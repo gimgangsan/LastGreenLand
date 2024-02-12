@@ -23,7 +23,7 @@ public class BattleManager : MonoBehaviour
 
     private Enemy enemy;
 
-    public Battle_Encounter ongoingEncounter;
+    public Battle_Encounter ongoingEncounter;  // 진행 중인 전투가 있음을 알리기 위해
 
     private bool isPlayerTurn = true;
     private bool isPlayerDefending = false;

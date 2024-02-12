@@ -9,7 +9,7 @@ public class Scenario   //인카운터가 모여 시나리오를 이루고, 시나리오가 모여 게�
 
     public List<Encounter> PossibleScenario  //선행조건을 만족한 인카운터만 추출
     {
-        get { return scenario.Where(encounter => encounter.precondition).ToList(); ; }
+        get { return scenario.Where(encounter => encounter.precondition).ToList(); }
     }
 
     public Encounter GetRandomEncounter     //선행조건을 만족한 인카운터 중 랜덤으로 하나 뽑기

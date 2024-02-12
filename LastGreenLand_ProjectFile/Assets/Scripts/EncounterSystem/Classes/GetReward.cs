@@ -10,11 +10,13 @@ public interface IGetReward
 
 public class RewardItem : IGetReward
 {
-    public string item;
+    public string item; // 보상으로 얻을 아이템
+
     public RewardItem(string item)
     {
         this.item = item;
     }
+
     public void GetReward()
     {
         Debug.Log($"아이템 {item}을(를) 얻었습니다.");
@@ -36,11 +38,11 @@ public class RewardStat : IGetReward
     {
         // 스탯 상승
         StatusPage.Instance.GetContent(index).Info += amount;
-        StatusPage.Instance.GetContent(index).UpdateInfo(0);    //UpdateInfo에 왜 매개변수가 있는지 몰라서 아무거나 집어넣음
+        StatusPage.Instance.GetContent(index).UpdateInfo(0);    // UpdateInfo에 왜 매개변수가 있는지 몰라서 아무거나 집어넣음
 
         // 로그 출력
-        Debug.Log($"{index} : {amount}");
-        LogManager.Instance.AddLog($"{index} : {amount}");
+        Debug.Log($"{index} {amount:+#;-#;0}");     // (+#;-#;0 : 부호 표시)
+        LogManager.Instance.AddLog($"{index} {amount:+#;-#;0}");
     }
 }
 

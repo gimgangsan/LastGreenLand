@@ -6,7 +6,6 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-//인카운터 시스템을 구현하기 위한 자료형들을 모아놓음
 public class Encounter
 {
     //전처리

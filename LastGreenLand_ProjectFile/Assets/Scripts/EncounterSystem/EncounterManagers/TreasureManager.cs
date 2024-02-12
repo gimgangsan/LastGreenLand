@@ -5,22 +5,17 @@ using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-
-//EncounterSystem.cs먼저 읽고 올 것
 public class TreasureManager : MonoBehaviour
 {
     public GameObject treasureLightPrefab;
-    public GameObject Background;
-
-    public List<Treasure_Encounter> ongoingEncounters = new();
+    public GameObject Background;   // 탐사 배경 (treasureLight의 위치를 조정하기 위해 사용)
 
     public Scenario 테스트시나리오 = new Scenario(
         new 낡은_단검_발견(),
         new 식칼_발견()
     );
 
-    //싱글턴 패턴
-    public static TreasureManager Instance { get; private set; }
+    public static TreasureManager Instance { get; private set; }    //싱글턴 패턴
 
     void Awake()
     {
@@ -29,6 +24,7 @@ public class TreasureManager : MonoBehaviour
 
     public void Encount()
     {
+        // 1~3개의 Treasure Encounter 생성
         int rand = Random.Range(1, 4);
         for (int i = 0; i < rand; i++)
             테스트시나리오.GetRandomEncounter.Encount();

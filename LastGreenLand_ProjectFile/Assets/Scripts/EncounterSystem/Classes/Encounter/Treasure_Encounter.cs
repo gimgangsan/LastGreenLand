@@ -9,7 +9,6 @@ public class Treasure_Encounter : Encounter
     public override void Encount()
     {
         base.Encount();
-        TreasureManager.Instance.ongoingEncounters.Add(this);
 
         //프리팹 생성
         GameObject light = GameObject.Instantiate(TreasureManager.Instance.treasureLightPrefab);
@@ -20,12 +19,12 @@ public class Treasure_Encounter : Encounter
                                                     Random.Range(-0.8f, 0.8f),
                                                     0);
 
+        // 프리팹을 클릭 했을 때 벌어질 일
         light.GetComponent<TreasureLight>().CompleteEncounter = new System.Action(Complete);
     }
 
     public override void Complete()
     {
         base.Complete();
-        TreasureManager.Instance.ongoingEncounters.Remove(this);
     }
 }
