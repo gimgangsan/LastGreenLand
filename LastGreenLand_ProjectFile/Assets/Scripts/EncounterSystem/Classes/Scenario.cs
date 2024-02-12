@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Scenario   //인카운터가 모여 시나리오를 이루고, 시나리오가 모여 게임스토리를 이루는 구조를 계획 중
+/// <summary>
+/// 인카운터들을 관리하는 클래스
+/// </summary>
+public class Scenario
 {
     public List<Encounter> scenario = new List<Encounter>();
 
-    public List<Encounter> PossibleScenario  //선행조건을 만족한 인카운터만 추출
+    /// <summary>
+    /// 선행조건을 만족한 인카운터만 추출
+    /// </summary>
+    public List<Encounter> PossibleScenario
     {
         get { return scenario.Where(encounter => encounter.precondition).ToList(); }
     }
 
-    public Encounter GetRandomEncounter     //선행조건을 만족한 인카운터 중 랜덤으로 하나 뽑기
+    /// <summary>
+    /// 선행조건을 만족한 인카운터 중 랜덤으로 하나 뽑기 (없으면 null)
+    /// </summary>
+    public Encounter GetRandomEncounter 
     {
         get
         {
@@ -22,6 +31,9 @@ public class Scenario   //인카운터가 모여 시나리오를 이루고, 시나리오가 모여 게�
         }
     }
 
+    /// <summary>
+    /// 발단이 되는 인카운트만 입력
+    /// </summary>
     public Scenario(params Encounter[] encounters)
     {
         foreach (Encounter encounter in encounters)

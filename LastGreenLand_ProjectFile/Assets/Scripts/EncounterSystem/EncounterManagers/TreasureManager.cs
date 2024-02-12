@@ -22,9 +22,12 @@ public class TreasureManager : MonoBehaviour
         Instance = this;    //싱글턴 패턴
     }
 
+    /// <summary>
+    /// 임의의 Treasure Encounter 1~3개를 시작
+    /// </summary>
     public void Encount()
     {
-        // 1~3개의 Treasure Encounter 생성
+
         int rand = Random.Range(1, 4);
         for (int i = 0; i < rand; i++)
             테스트시나리오.GetRandomEncounter.Encount();

@@ -14,7 +14,10 @@ public class SelectionManager : MonoBehaviour
         new 멀리서_사람의_그림자를_발견()
     );
 
-    public Selection_Encounter ongoingEncounter;     // 진행 중인 인카운터가 있음을 알리기 위해
+    /// <summary>
+    /// 진행 중인 인카운터
+    /// </summary>
+    public Selection_Encounter ongoingEncounter;
 
     public static SelectionManager Instance { get; private set; }   // 싱글톤 패턴
 
@@ -28,12 +31,19 @@ public class SelectionManager : MonoBehaviour
             panelTexts[i] = panelObjs[i].transform.Find("Text").GetComponent<TMP_Text>(); //자식오브젝트 중에서 이름으로 검색해서 할당
     }
 
-    public void SelectOption(int optionIndex)   // 선택함 (패널UI의 버튼 컴포넌트에서 호출)
+    /// <summary>
+    /// ongoingEncounter의 Select메소드 호출
+    /// </summary>
+    /// <param name="optionIndex">선택지 배열의 인덱스</param>
+    public void SelectOption(int optionIndex)
     {
         ongoingEncounter.Select(optionIndex);
     }
 
-    public void Encount()   // Explore에서 호출
+    /// <summary>
+    /// 임의의 Selection Encounter 시작
+    /// </summary>
+    public void Encount()
     {
         테스트시나리오.GetRandomEncounter.Encount();
     }

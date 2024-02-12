@@ -2,17 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 선택지를 제시하는 인카운터
+/// </summary>
 public class Selection_Encounter : Encounter
 {
     protected string beforeContext;     // 인카운터에 대한 상황 설명, 또는 인카운터가 발생한 맥락
 
+    /// <summary>
+    /// 선택지에 대한 정보를 담은 구조체
+    /// </summary>
     public struct Option    //선택지 구조체
     {
         public string optionScript;         // 선택지에 들어갈 대사
-        public string afterContext;         // 선택 이후의 상황 (경우에 따라 없을 수도)
+        public string afterContext;         // 선택한 후의 상황 (경우에 따라 없을 수도)
         public IGetReward reward;           // 선택에 따른 보상 (경우에 따라 없을 수도)
         public Encounter afterEncounter;    // 이어질 인카운터 (경우에 따라 없을 수도)
 
+        /// <summary>
+        /// 선택지의 생성자
+        /// </summary>
+        /// <param name="optionScript">선택지에 들어갈 대사</param>
+        /// <param name="afterContext">선택한 후의 상황</param>
+        /// <param name="reward">보상</param>
+        /// <param name="afterEncounter">해당 인카운터 종료 후에 이어질 인카운터</param>
         public Option(string optionScript, string afterContext = null, IGetReward reward = null, Encounter afterEncounter = null)
         {
             this.optionScript = optionScript;
@@ -23,6 +36,9 @@ public class Selection_Encounter : Encounter
     }
     protected Option[] options;    //선택지
 
+    /// <summary>
+    /// 인카운터 시작 // ongoingEncounter에 자신을 저장, beforeContext 출력, 패널UI 활성화
+    /// </summary>
     public override void Encount()
     {
         base.Encount();
@@ -47,7 +63,10 @@ public class Selection_Encounter : Encounter
         }
     }
 
-    // 선택함 (SelectionManager에서 호출)
+    /// <summary>
+    /// 선택함 // ongoingEncounter를 null로, 패널UI 비활성화, afterContext 출력, 보상 획득, 이어질 인카운터 시작
+    /// </summary>
+    /// <param name="optionIndex">선택지 배열의 인덱스</param>
     public void Select(int optionIndex)
     {
         base.Complete();
