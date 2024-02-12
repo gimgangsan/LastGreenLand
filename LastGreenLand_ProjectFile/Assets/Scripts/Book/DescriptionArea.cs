@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class DescriptionArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private GameObject display;
+    [SerializeField] private GameObject displayMinimal;
+    [SerializeField] private TextMeshProUGUI text;
     [SerializeField] [TextArea(2,8)] private string description;
 
     private void Awake()
@@ -18,17 +20,18 @@ public class DescriptionArea : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        display.SetActive(true);;
+        display.SetActive(true);
+        displayMinimal.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         display.SetActive(false);
+        displayMinimal.SetActive(false);
     }
 
     public void ChangeDescription(string description)
     {
-        TextMeshProUGUI DescriptionText = display.GetComponentInChildren<TextMeshProUGUI>();
-        DescriptionText.text = description;
+        text.text = description;
     }
 }
