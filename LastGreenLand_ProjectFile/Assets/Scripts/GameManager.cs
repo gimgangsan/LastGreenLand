@@ -7,10 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance = null;
 
     private int currentLocation = 0;
-    public float maxHealth = 100;
-    public float currentHealth = 100;
-    public float strength = 20;
-    public float defense = 10;
 
     void Awake()
     {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static StatusPage;
 
 public class BattleManager : MonoBehaviour
 {
@@ -90,7 +91,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Player Attacked!");
         flash.SetTrigger("Flash");
 
-        enemy.curHealth -= Mathf.Max(GameManager.Instance.strength - enemy.defense, 0f);
+        enemy.curHealth -= Mathf.Max(StatusPage.Instance.GetContent(ContentsIndex.strength).Info - enemy.defense, 0f);
         if (enemy.curHealth < 0f) { enemy.curHealth = 0f; EndBattle(); }
 
         enemyHealthBar.value = enemy.curHealth / enemy.maxHealth;
@@ -115,8 +116,9 @@ public class BattleManager : MonoBehaviour
 
         flash.SetTrigger("Flash");
 
-        GameManager.Instance.currentHealth -= isPlayerDefending ? Mathf.Max(enemy.strength - GameManager.Instance.defense, 0f) : enemy.strength;
-        if (GameManager.Instance.currentHealth < 0f) { GameManager.Instance.currentHealth = 0f; }
+        StatusPage.Instance.GetContent(ContentsIndex.hp).Info -= Mathf.CeilToInt(enemy.strength); //isPlayerDefending ? Mathf.Max(enemy.strength - GameManager.Instance.defense, 0f) : enemy.strength; //StatusPage에 defense가 없음
+        if (StatusPage.Instance.GetContent(ContentsIndex.hp).Info < 0) { StatusPage.Instance.GetContent(ContentsIndex.hp).Info = 0; }
+        StatusPage.Instance.GetContent(ContentsIndex.hp).UpdateInfo(0); // UpdateInfo에 왜 매개변수가 있는지 몰라서 아무거나 집어넣음
 
         isPlayerDefending = false;
         isPlayerTurn = true;
