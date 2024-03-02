@@ -26,10 +26,7 @@ public class BattleManager : MonoBehaviour
 
     public Battle_Encounter ongoingEncounter;  // 진행 중인 전투가 있음을 알리기 위해
 
-    private bool isPlayerTurn = true;
     private bool isPlayerDefending = false;
-
-    private float actionCooldown = 1f;
 
     void Start()
     {
@@ -50,27 +47,6 @@ public class BattleManager : MonoBehaviour
         {
             StartBattle(0);
         }
-
-        actionCooldown -= Time.deltaTime;
-
-        if (isPlayerTurn)
-        {
-            if (actionCooldown < 0f)
-            {
-                attackButton.interactable = true;
-                defendButton.interactable = true;
-            }
-        }
-        else
-        {
-            attackButton.interactable = false;
-            defendButton.interactable = false;
-
-            if (actionCooldown < 0f)
-            {
-                DoEnemyAttack();
-            }
-        }
     }
 
     public void StartBattle(int index)
@@ -81,7 +57,8 @@ public class BattleManager : MonoBehaviour
         enemyName.text = enemy.name;
         enemyHealthBar.value = enemy.curHealth / enemy.maxHealth;
 
-        isPlayerTurn = true;
+        attackButton.interactable = true;
+        defendButton.interactable = true;
 
         battleScreen.SetActive(true);
     }
@@ -96,8 +73,7 @@ public class BattleManager : MonoBehaviour
 
         enemyHealthBar.value = enemy.curHealth / enemy.maxHealth;
 
-        isPlayerTurn = false;
-        actionCooldown = 1f;
+        StartCoroutine("DoEnemyAttack");
     }
 
     public void DoPlayerDefense()
@@ -105,24 +81,28 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Player Defended!");
 
         isPlayerDefending = true;
-        isPlayerTurn = false;
 
-        actionCooldown = 1f;
+        StartCoroutine("DoEnemyAttack");
     }
 
-    public void DoEnemyAttack()
+    public IEnumerator DoEnemyAttack()
     {
-        Debug.Log("Enemy Attacked!");
+        attackButton.interactable = false;
+        defendButton.interactable = false;
 
+        yield return new WaitForSeconds(1f);
+
+        Debug.Log("Enemy Attacked!");
         flash.SetTrigger("Flash");
 
         StatusPage.Instance.GetContent(ContentsIndex.hp).Info -= Mathf.CeilToInt(enemy.strength); //isPlayerDefending ? Mathf.Max(enemy.strength - GameManager.Instance.defense, 0f) : enemy.strength; //StatusPage에 defense가 없음
         StatusPage.Instance.GetContent(ContentsIndex.hp).Info = Mathf.Max(StatusPage.Instance.GetContent(ContentsIndex.hp).Info, 0);
 
-        isPlayerDefending = false;
-        isPlayerTurn = true;
+        yield return new WaitForSeconds(1f);
 
-        actionCooldown = 1f;
+        isPlayerDefending = false;
+        attackButton.interactable = true;
+        defendButton.interactable = true;
     }
 
     public void EndBattle()
