@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
+using static StatusPage;
 
 public interface IGetReward
 {
@@ -38,31 +39,30 @@ public class RewardItem : IGetReward
 /// </summary>
 public class RewardStat : IGetReward
 {
-    StatusPage.ContentsIndex index; // 변화시킬 스탯
-    int amount;                     // 변화량
+    ContentsIndex index;    // 변화시킬 스탯
+    int amount;             // 변화량
 
     /// <summary>
     /// 얻을 스탯의 정보를 입력
     /// </summary>
     /// <param name="index">변화시킬 스탯</param>
     /// <param name="amount">변화량</param>
-    public RewardStat(StatusPage.ContentsIndex index, int amount)
+    public RewardStat(ContentsIndex index, int amount)
     {
         this.index = index;
         this.amount = amount;
     }
 
     /// <summary>
-    /// StatusPage에 접근해서 스탯 및 UI텍스트 변경 // 로그 출력
+    /// StatusPage에 접근해서 스탯 변경, 로그 출력
     /// </summary>
     public void GetReward()
     {
         // 스탯 상승
         StatusPage.Instance.GetContent(index).Info += amount;
-        StatusPage.Instance.GetContent(index).UpdateInfo(0);    // UpdateInfo에 왜 매개변수가 있는지 몰라서 아무거나 집어넣음
 
         // 로그 출력
-        Debug.Log($"{index} {amount:+#;-#;0}");     // (+#;-#;0 : 부호 표시)
+        Debug.Log($"{index} {amount:+#;-#;0}");     // (+#;-#;0 : 부호를 표시하겠다)
         LogManager.Instance.AddLog($"{index} {amount:+#;-#;0}");
     }
 }

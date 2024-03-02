@@ -117,8 +117,7 @@ public class BattleManager : MonoBehaviour
         flash.SetTrigger("Flash");
 
         StatusPage.Instance.GetContent(ContentsIndex.hp).Info -= Mathf.CeilToInt(enemy.strength); //isPlayerDefending ? Mathf.Max(enemy.strength - GameManager.Instance.defense, 0f) : enemy.strength; //StatusPage에 defense가 없음
-        if (StatusPage.Instance.GetContent(ContentsIndex.hp).Info < 0) { StatusPage.Instance.GetContent(ContentsIndex.hp).Info = 0; }
-        StatusPage.Instance.GetContent(ContentsIndex.hp).UpdateInfo(0); // UpdateInfo에 왜 매개변수가 있는지 몰라서 아무거나 집어넣음
+        StatusPage.Instance.GetContent(ContentsIndex.hp).Info = Mathf.Max(StatusPage.Instance.GetContent(ContentsIndex.hp).Info, 0);
 
         isPlayerDefending = false;
         isPlayerTurn = true;

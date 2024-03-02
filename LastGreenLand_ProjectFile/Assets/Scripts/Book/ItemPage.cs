@@ -15,7 +15,7 @@ public class ItemPage : MonoBehaviour
     {
         for (int i = 0; i < contents.Count; i++)
         {
-            contents[i].UpdateInfo(contents[i].Info);
+            contents[i].UpdateInfo();
         }
     }
 
@@ -38,7 +38,7 @@ public class ItemPage : MonoBehaviour
 
     public void SetItemCount(int index, int newStat)
     {
-        contents[index].UpdateInfo(newStat);
+        contents[index].Info = newStat;
     }
 
     public void AddItem(int quantity, string type)

@@ -23,7 +23,7 @@ public class StatusPage : MonoBehaviour
 
         for(int i = 0; i < ContentsCount; i++)
         {
-            contents[i].UpdateInfo(contents[i].Info);
+            contents[i].UpdateInfo();
         }
     }
 
@@ -34,14 +34,24 @@ public class StatusPage : MonoBehaviour
 
     public void SetStatus(ContentsIndex index, int newStat)
     {
-        contents[(int)index].UpdateInfo(newStat);
+        contents[(int)index].Info = newStat;
     }
 }
 
 [Serializable]
 public class PageContent
 {
-    public int Info;
+    [SerializeField] private int info;
+    public int Info
+    {
+        get {  return info; }
+        set
+        {
+            info = value;
+            UpdateInfo();
+        }
+    }
+        
     public string Type;
     public TextMeshProUGUI UI;
 
@@ -50,9 +60,10 @@ public class PageContent
         Info = info;
         Type = type;
         UI = uI;
+        UpdateInfo();
     }
 
-    public void UpdateInfo(int newStat)
+    public void UpdateInfo()
     {
         UI.text = Type + " " + Info;
     }
