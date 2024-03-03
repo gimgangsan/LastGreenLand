@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: hpStat
   m_EditorClassIdentifier: 
   Sprite: {fileID: 0}
-  Info: 
-  Description: 
-  stat: 0
+  Info: hphp
+  Description: 0 die
+  stat: 2222
