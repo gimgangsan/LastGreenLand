@@ -9,10 +9,7 @@ public class StatusPage : MonoBehaviour
 {
     [SerializeField] private PageContent[] contents;
 
-    [SerializeField] private StatusFormat[] initialFormat;
-    [SerializeField] private GameObject contentsFill_int;
-    [SerializeField] private GameObject verticalLayout;
-    private StatusFill[] statContents;
+    [SerializeField] StatusFill[] statContents;
 
     public enum ContentsIndex { hp, maxhp, strength, agility, hydration, hunger, bodyTemperature, // physical
         coldResistance, heatResistance, stealth, // environmental
@@ -26,34 +23,19 @@ public class StatusPage : MonoBehaviour
         Instance = this;    // ΩÃ±€≈Ê ∆–≈œ
         
         ContentsCount = Enum.GetNames(typeof(ContentsIndex)).Length;
-        statContents = new StatusFill[ContentsCount];
         //Debug.Log(GetContent(ContentsIndex.hp).Info);
 
         for (int i = 0; i < ContentsCount; i++)
         {
             contents[i].UpdateInfo();
         }
-        CreateContent();
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.V))
         {
-            Debug.Log("lol");
-            GetStatus(ContentsIndex.hp).Stat = 2222;
-        }
-    }
-
-    public void CreateContent()
-    {
-        for (int i = 0; i < initialFormat.Length; i++)
-        {
-            GameObject newContent = Instantiate(contentsFill_int);
-            newContent.transform.SetParent(verticalLayout.transform, false);
-            StatusFill script = newContent.GetComponent<StatusFill>();
-            script.ContentsFormat = initialFormat[i];
-            statContents[i] = script;
+            GetStatus(ContentsIndex.hp).Stat = 12345;
         }
     }
 

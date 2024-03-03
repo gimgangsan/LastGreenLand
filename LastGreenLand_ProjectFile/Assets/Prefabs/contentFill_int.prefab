@@ -641,7 +641,7 @@ MonoBehaviour:
   image: {fileID: 3847091002729821912}
   info: {fileID: 2423782894775499034}
   description: {fileID: 9086323746553975633}
-  stat: {fileID: 542572199561862771}
+  statText: {fileID: 542572199561862771}
   contentsFormat: {fileID: 0}
 --- !u!222 &3224455501615555492
 CanvasRenderer:

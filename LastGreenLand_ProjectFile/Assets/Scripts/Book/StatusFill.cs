@@ -11,26 +11,17 @@ public class StatusFill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] protected Image image;
     [SerializeField] protected TextMeshProUGUI info;
     [SerializeField] protected TextMeshProUGUI description;
-    [SerializeField] protected TextMeshProUGUI stat;
-    private StatusFormat contentsFormat;
-
-    public StatusFormat ContentsFormat
-    {
-        get { return contentsFormat; }
-        set
-        {
-            contentsFormat = value;
-            ApplyContentsFormat();
-        }
-    }
+    [SerializeField] protected TextMeshProUGUI statText;
+    [SerializeField] private StatusFormat contentsFormat;
+    private int stat = 999;
 
     public int Stat
     {
         get { return contentsFormat.stat; }
         set
         {
-            contentsFormat.stat = value;
-            stat.text = contentsFormat.stat.ToString();
+            stat = value;
+            statText.text = stat.ToString();
         }
     }
 
@@ -42,22 +33,12 @@ public class StatusFill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         ApplyContentsFormat();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        display.gameObject.SetActive(true);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        display.gameObject.SetActive(false);
-    }
-
-    public virtual void ApplyContentsFormat()
+    public void ApplyContentsFormat()
     {
         if (contentsFormat == null) return;
         ChangeDescription(contentsFormat.Description);
         info.text = contentsFormat.Info;
-        stat.text = contentsFormat.stat.ToString();
+        Stat = contentsFormat.stat;
         if (contentsFormat.Sprite != null) image.sprite = contentsFormat.Sprite;
     }
 
@@ -73,5 +54,15 @@ public class StatusFill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             display.sizeDelta = new Vector2(0, descriptionMinimumHeight);
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        display.gameObject.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        display.gameObject.SetActive(false);
     }
 }
