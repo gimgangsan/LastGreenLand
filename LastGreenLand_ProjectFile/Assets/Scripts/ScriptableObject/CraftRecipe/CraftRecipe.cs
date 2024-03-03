@@ -6,12 +6,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CraftRecipe", menuName = "ScriptableObject/CraftRecipe")]
 public class CraftRecipe : ScriptableObject
 {
-    public List<Ingridient> Recipe;
+    public List<ManyItems> Recipe;
+    public ManyItems Output;
 }
 
 [Serializable]
-public struct Ingridient
+public struct ManyItems
 {
-    public int ItemId;
+    public Item Item;
     public int Quantitiy;
 }

@@ -7355,8 +7355,8 @@ GameObject:
   - component: {fileID: 1428583297}
   - component: {fileID: 1428583296}
   - component: {fileID: 1428583295}
-  - component: {fileID: 1428583294}
   - component: {fileID: 1428583299}
+  - component: {fileID: 1428583300}
   m_Layer: 5
   m_Name: CraftPage
   m_TagString: Untagged
@@ -7386,20 +7386,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
---- !u!114 &1428583294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1428583292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f45e3c1a0c122184585893d6934e4f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ContentFill_test: {fileID: 786147375069350723, guid: 1798cfaf93c74024091e275fccd2203f, type: 3}
-  ContentArea: {fileID: 946649804}
 --- !u!114 &1428583295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7502,6 +7488,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1428583300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428583292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b01ce8880f4dd4a8fde86d301295a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1442623944 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6876589331047770124, guid: 1798cfaf93c74024091e275fccd2203f, type: 3}
@@ -11030,7 +11028,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 837318051}
   m_Direction: 2
   m_Value: 0.4999998
-  m_Size: 0.72222215
+  m_Size: 0.7228045
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
