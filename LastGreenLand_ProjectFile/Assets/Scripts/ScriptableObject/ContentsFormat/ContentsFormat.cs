@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ContentsFormat", menuName = "ScriptableObject/Contents")]
+[CreateAssetMenu(fileName = "ContentsFormat", menuName = "ScriptableObject/Contents/Default")]
 public class ContentsFormat : ScriptableObject
 {
     public Sprite Sprite;

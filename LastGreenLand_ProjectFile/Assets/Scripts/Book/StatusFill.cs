@@ -5,13 +5,34 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ContentsFill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class StatusFill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] protected RectTransform display;
     [SerializeField] protected Image image;
     [SerializeField] protected TextMeshProUGUI info;
     [SerializeField] protected TextMeshProUGUI description;
-    public ContentsFormat contentsFormat;
+    [SerializeField] protected TextMeshProUGUI stat;
+    private StatusFormat contentsFormat;
+
+    public StatusFormat ContentsFormat
+    {
+        get { return contentsFormat; }
+        set
+        {
+            contentsFormat = value;
+            ApplyContentsFormat();
+        }
+    }
+
+    public int Stat
+    {
+        get { return contentsFormat.stat; }
+        set
+        {
+            contentsFormat.stat = value;
+            stat.text = contentsFormat.stat.ToString();
+        }
+    }
 
     private float descriptionMinimumHeight;
 
@@ -36,6 +57,7 @@ public class ContentsFill : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (contentsFormat == null) return;
         ChangeDescription(contentsFormat.Description);
         info.text = contentsFormat.Info;
+        stat.text = contentsFormat.stat.ToString();
         if (contentsFormat.Sprite != null) image.sprite = contentsFormat.Sprite;
     }
 
@@ -43,7 +65,7 @@ public class ContentsFill : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         description.text = newDescription;
         float newPreferredHeight = description.preferredHeight;
-        if(descriptionMinimumHeight < newPreferredHeight)
+        if (descriptionMinimumHeight < newPreferredHeight)
         {
             display.sizeDelta = new Vector2(0, description.preferredHeight);
         }

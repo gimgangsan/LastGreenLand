@@ -8,6 +8,12 @@ using UnityEngine;
 public class StatusPage : MonoBehaviour
 {
     [SerializeField] private PageContent[] contents;
+
+    [SerializeField] private StatusFormat[] initialFormat;
+    [SerializeField] private GameObject contentsFill_int;
+    [SerializeField] private GameObject verticalLayout;
+    private StatusFill[] statContents;
+
     public enum ContentsIndex { hp, maxhp, strength, agility, hydration, hunger, bodyTemperature, // physical
         coldResistance, heatResistance, stealth, // environmental
         scavenging, sociability, DIY, engineering, weaponMastery } // skills
@@ -18,13 +24,42 @@ public class StatusPage : MonoBehaviour
     private void Awake()
     {
         Instance = this;    // ΩÃ±€≈Ê ∆–≈œ
+        
         ContentsCount = Enum.GetNames(typeof(ContentsIndex)).Length;
+        statContents = new StatusFill[ContentsCount];
         //Debug.Log(GetContent(ContentsIndex.hp).Info);
 
-        for(int i = 0; i < ContentsCount; i++)
+        for (int i = 0; i < ContentsCount; i++)
         {
             contents[i].UpdateInfo();
         }
+        CreateContent();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            Debug.Log("lol");
+            GetStatus(ContentsIndex.hp).Stat = 2222;
+        }
+    }
+
+    public void CreateContent()
+    {
+        for (int i = 0; i < initialFormat.Length; i++)
+        {
+            GameObject newContent = Instantiate(contentsFill_int);
+            newContent.transform.SetParent(verticalLayout.transform, false);
+            StatusFill script = newContent.GetComponent<StatusFill>();
+            script.ContentsFormat = initialFormat[i];
+            statContents[i] = script;
+        }
+    }
+
+    public StatusFill GetStatus(ContentsIndex index)
+    {
+        return statContents[(int)index];
     }
 
     public PageContent GetContent(ContentsIndex index)
