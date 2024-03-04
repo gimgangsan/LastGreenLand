@@ -15,9 +15,19 @@ public class StatusFill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private StatusFormat contentsFormat;
     private int stat = 999;
 
+    public StatusFormat ContentsFormat
+    {
+        get { return contentsFormat; }
+        set 
+        { 
+            contentsFormat = value;
+            ApplyContentsFormat(contentsFormat);
+        }
+    }
+
     public int Stat
     {
-        get { return contentsFormat.stat; }
+        get { return stat; }
         set
         {
             stat = value;
@@ -30,11 +40,12 @@ public class StatusFill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void Awake()
     {
         descriptionMinimumHeight = display.rect.height;
-        ApplyContentsFormat();
+        ApplyContentsFormat(contentsFormat);
     }
 
-    public void ApplyContentsFormat()
+    public void ApplyContentsFormat(StatusFormat format)
     {
+        contentsFormat = format;
         if (contentsFormat == null) return;
         ChangeDescription(contentsFormat.Description);
         info.text = contentsFormat.Info;

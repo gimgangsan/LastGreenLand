@@ -11,6 +11,12 @@ public class ItemPage : MonoBehaviour
 
     [SerializeField] private List<PageContent> contents;
 
+    //scriptable object
+    [SerializeField] private List<StatusFill> itemContents;
+
+    [SerializeField] private GameObject contentsFill_int;
+    [SerializeField] private Item testItemFormat;
+
     private void Awake()
     {
         for (int i = 0; i < contents.Count; i++)
@@ -29,8 +35,52 @@ public class ItemPage : MonoBehaviour
         {
             DestroyContent(contents[0]);
         }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            AddItem(testItemFormat,1);
+        }
     }
 
+    public StatusFill GetFromInventory(int index)
+    {
+        if (index > itemContents.Count)
+        {
+            Debug.Log("out of inventory index");
+            return null;
+        }
+        return itemContents[index];
+    }
+
+    public void AddItem(Item itemInfo, int quantity)
+    {
+        for (int i = 0; i < itemContents.Count; i++)
+        {
+            // 같은 아이템
+            if (string.Compare(itemContents[i].ContentsFormat.Info, itemInfo.Name) == 0)
+            {
+                itemContents[i].Stat += quantity;
+                return;
+            }
+        }
+        StatusFormat newItemFormat = ScriptableObject.CreateInstance<StatusFormat>();
+        newItemFormat.Sprite = itemInfo.Sprite;
+        newItemFormat.Info = itemInfo.Name;
+        newItemFormat.Description = itemInfo.Describtion;
+        newItemFormat.stat = 1;
+
+        CreateContent(newItemFormat);
+    }
+
+    public void CreateContent(StatusFormat format)
+    {
+        GameObject newUI = Instantiate(contentsFill_int);
+        newUI.transform.SetParent(verticalLayout.transform, false);
+        StatusFill script = newUI.GetComponent<StatusFill>();
+        script.ApplyContentsFormat(format);
+        itemContents.Add(script);
+    }
+
+    // =================legacy==================
     public PageContent GetContent(int index)
     {
         return contents[index];
@@ -95,4 +145,5 @@ public class ItemPage : MonoBehaviour
         contents.Remove(content);
         Destroy(content.UI.rectTransform.parent.gameObject);
     }
+    // =================legacy==================
 }
