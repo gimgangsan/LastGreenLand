@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SaplingStart
   m_EditorClassIdentifier: 
   Sprite: {fileID: 0}
-  Info: 
-  Description: 
-  stat: 0
+  Info: sapling
+  Description: a bunch of tree branches
+  stat: 10
