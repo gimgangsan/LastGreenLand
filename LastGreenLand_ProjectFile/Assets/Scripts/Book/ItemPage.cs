@@ -6,24 +6,11 @@ using UnityEngine;
 
 public class ItemPage : MonoBehaviour
 {
-    [SerializeField] private GameObject contentsFill;
     [SerializeField] private GameObject verticalLayout;
-
-    [SerializeField] private List<PageContent> contents;
-
-    //scriptable object
     [SerializeField] private List<StatusFill> itemContents;
 
     [SerializeField] private GameObject contentsFill_int;
     [SerializeField] private Item testItemFormat;
-
-    private void Awake()
-    {
-        for (int i = 0; i < contents.Count; i++)
-        {
-            contents[i].UpdateInfo();
-        }
-    }
 
     private void Update()
     {
