@@ -39,6 +39,10 @@ public class ItemPage : MonoBehaviour
         {
             AddItem(testItemFormat,1);
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            UseItem(testItemFormat,1);
+        }
     }
 
     public StatusFill GetFromInventory(int index)
@@ -49,6 +53,36 @@ public class ItemPage : MonoBehaviour
             return null;
         }
         return itemContents[index];
+    }
+
+    public void UseItem(Item itemInfo, int quantity)
+    {
+        for (int i = 0; i < itemContents.Count; i++)
+        {
+            // same string, same item, only minus count
+            if (string.Compare(itemContents[i].ContentsFormat.Info, itemInfo.Name) == 0)
+            {
+                if (itemContents[i].Stat < quantity)
+                {
+                    Debug.Log("not enough quantity");
+                }
+                else if (itemContents[i].Stat == quantity)
+                {
+                    DestroyContent(itemContents[i]);
+                }
+                else
+                {
+                    itemContents[i].Stat -= quantity;
+                }
+                return;
+            }
+        }
+    }
+
+    public void DestroyContent(StatusFill content)
+    {
+        itemContents.Remove(content);
+        Destroy(content.gameObject);
     }
 
     public void AddItem(Item itemInfo, int quantity)
