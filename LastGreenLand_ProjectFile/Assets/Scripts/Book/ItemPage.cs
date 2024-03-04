@@ -62,11 +62,7 @@ public class ItemPage : MonoBehaviour
                 return;
             }
         }
-        StatusFormat newItemFormat = ScriptableObject.CreateInstance<StatusFormat>();
-        newItemFormat.Sprite = itemInfo.Sprite;
-        newItemFormat.Info = itemInfo.Name;
-        newItemFormat.Description = itemInfo.Describtion;
-        newItemFormat.stat = 1;
+        StatusFormat newItemFormat = new StatusFormat(itemInfo.Sprite, itemInfo.Name, itemInfo.Describtion, 1);
 
         CreateContent(newItemFormat);
     }

@@ -1483,12 +1483,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 233440898}
+  - component: {fileID: 233440905}
   - component: {fileID: 233440903}
   - component: {fileID: 233440902}
   - component: {fileID: 233440901}
   - component: {fileID: 233440900}
   - component: {fileID: 233440904}
-  - component: {fileID: 233440905}
   m_Layer: 5
   m_Name: ItemPage
   m_TagString: Untagged
@@ -1635,6 +1635,9 @@ MonoBehaviour:
   contentsFill: {fileID: 786147375069350723, guid: 1798cfaf93c74024091e275fccd2203f, type: 3}
   verticalLayout: {fileID: 1410448208}
   contents: []
+  itemContents: []
+  contentsFill_int: {fileID: 8972241227158491032, guid: 268638040eaad5c469960976f6dfb5f7, type: 3}
+  testItemFormat: {fileID: 11400000, guid: 9b39b2e1ac0b8f244b18be9444f94abc, type: 2}
 --- !u!1 &234182852
 GameObject:
   m_ObjectHideFlags: 0
