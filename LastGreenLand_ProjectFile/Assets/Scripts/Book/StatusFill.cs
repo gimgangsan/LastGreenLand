@@ -45,8 +45,8 @@ public class StatusFill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void ApplyContentsFormat(StatusFormat format)
     {
+        if (format == null) return;
         contentsFormat = format;
-        if (contentsFormat == null) return;
         ChangeDescription(contentsFormat.Description);
         info.text = contentsFormat.Info;
         Stat = contentsFormat.stat;

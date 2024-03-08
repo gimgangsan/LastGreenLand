@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CampFireRecipe
   m_EditorClassIdentifier: 
   Recipe:
-  - ItemId: {fileID: 11400000, guid: 9b39b2e1ac0b8f244b18be9444f94abc, type: 2}
+  - Item: {fileID: 11400000, guid: 9b39b2e1ac0b8f244b18be9444f94abc, type: 2}
     Quantitiy: 1
-  - ItemId: {fileID: 11400000, guid: 86e9168590d56b940a4ae8b187fa188a, type: 2}
+  - Item: {fileID: 11400000, guid: 86e9168590d56b940a4ae8b187fa188a, type: 2}
     Quantitiy: 3
   Output:
-    ItemId: {fileID: 11400000, guid: 30382362f1b7bc94f97d947a2d07299d, type: 2}
+    Item: {fileID: 11400000, guid: 30382362f1b7bc94f97d947a2d07299d, type: 2}
     Quantitiy: 1
