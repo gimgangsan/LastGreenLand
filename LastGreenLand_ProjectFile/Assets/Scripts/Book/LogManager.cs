@@ -37,7 +37,12 @@ public class LogManager : MonoBehaviour
         newLog.transform.SetParent(logTextContainer.transform);
 
         TMP_Text textComp = newLog.GetComponentInChildren<TMP_Text>();
-        textComp.text = "- " + text;
+        textComp.enableAutoSizing = false;
+        textComp.fontSize = 16;
+        textComp.text = text;
+
+        RectTransform parentRect = textComp.transform.parent.GetComponent<RectTransform>();
+        parentRect.sizeDelta = new Vector2(parentRect.sizeDelta.x, textComp.preferredHeight);
 
         logs.Insert(0, newLog);
 
